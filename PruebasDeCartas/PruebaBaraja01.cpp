@@ -48,5 +48,13 @@ int main (){
         cin>>num_jugadores;
     }
 
+    string lista_jugadores[num_jugadores];
+
+    //Ingresar Jugadores
+    for(int i = 0; i<num_jugadores; i++){
+        cout<<"Ingrese el el nombre del jugador "<<i+1<<": ";
+        cin>>lista_jugadores[i];
+    }
+
     return 0;
 }
