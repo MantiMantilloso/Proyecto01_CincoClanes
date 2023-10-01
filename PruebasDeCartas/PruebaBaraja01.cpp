@@ -34,5 +34,21 @@ int main (){
         baraja_repartir[i]=baraja_maestra[i]; 
     //Para tener fija la baraja maestra, en la clase implementar como static
     //Usar baraja_repartir para repartir las cartas a los jugadores, una vez que se reparta una carta, esta sera reemplazada por un "0"
+
+    //Implementar los jugadores
+
+    int num_jugadores{};
+    
+    cout<<"Cuantos jugadores (escoja de 2 a 5): ";
+    cin>>num_jugadores; //Validacion en la clase (num_jugadores>=2 y num_jugadores<=5)
+
+    while (num_jugadores<=2 or num_jugadores>=5){
+        cout<<"Numero invalido, ";
+        cout<<"Cuantos jugadores (escoja de 2 a 5): ";
+        cin>>num_jugadores;
+    }
+    
+
+
     return 0;
 }
