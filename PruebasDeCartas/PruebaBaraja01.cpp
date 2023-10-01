@@ -1,3 +1,10 @@
+/* 
+Mauricio Mantilla
+Los Cinco Clanes
+
+ver 0.1 Implementar una baraja de 40 cartas
+
+*/
 #include <iostream>
 using namespace std;
 
