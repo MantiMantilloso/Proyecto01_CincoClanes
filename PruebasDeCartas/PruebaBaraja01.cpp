@@ -56,5 +56,9 @@ int main (){
         cin>>lista_jugadores[i];
     }
 
+    //Mostrar Jugadores
+    for(int i = 0; i<num_jugadores; i++){
+        cout<<"el nombre del jugador "<<i+1<<" es: "<<lista_jugadores[i]<<endl;
+    }
     return 0;
 }
