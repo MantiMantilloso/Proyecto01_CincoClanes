@@ -1,8 +1,23 @@
 /* 
 Mauricio Mantilla
-Los Cinco Clanes
+Los Cinco Clanes:
+Para este proyecto la mecánica del juego es la siguiente:
+• El programa se inicia solicitando el número de jugadores que van a participar. Deben ser de dos 
+a cinco jugadores. (Manti) X
+• Luego debe solicitar el nombre de cada Jugador. (Manti) X
+• El sistema debe entregar a cada jugador 3 cartas tomadas de la baraja que representan la 
+armada de cada jugador.(Manti) pendiente
+• Luego el sistema debe calcular y mostrar en la pantalla el valor de la armada de cada jugador. (james) pendiente
+• El jugador que tenga la armada con el valor más grande gana la partida. Si existe un empate el 
+juego debe continuar.(james) pendiente
+• Si no existe un ganador (todos tienen 0) o hay un empate, el usuario podrá pedirle al sistema 
+que entregue otra carta a cada jugador. (Manti) pendiente
+• Y luego se repite el proceso hasta que un jugador gane (James) pendiente
+• El juego termina cuando un jugador gana o cuando ya no hay la posibilidad de seguir sacando 
+cartas de la baraja (James) pendiente
 
 ver 0.1 Implementar una baraja de 40 cartas
+ver 0.2 Implementar jugadores
 
 */
 #include <iostream>
@@ -60,5 +75,7 @@ int main (){
     for(int i = 0; i<num_jugadores; i++){
         cout<<"el nombre del jugador "<<i+1<<" es: "<<lista_jugadores[i]<<endl;
     }
+
+    //Agregar cartas a cada jugador (realizar un unico metodo donde se añadan cartas aleatorias)
     return 0;
 }
