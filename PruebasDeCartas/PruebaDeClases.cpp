@@ -4,7 +4,7 @@
 
 using namespace std;
 
-class Carta{
+/*class Carta{
 private:
 
     char guerrero;
@@ -26,9 +26,15 @@ public:
     char getClan (){
         return this->clan;
     }
-};
+    James mato esto :(
+};*/
 
 class baraja{
-
+    private:
+        vector <string> baraja_madre;
+    
+    public:
+        void mezclar(vector<string>baraja_m);
+        void repartir(vector<string> baraja);
 
 };
