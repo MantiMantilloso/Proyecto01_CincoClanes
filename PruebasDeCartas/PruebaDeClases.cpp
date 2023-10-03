@@ -72,3 +72,14 @@ class Baraja{
         }
 
 };
+
+class Jugador{
+
+    private: 
+    int numero;
+    string nombre;
+    vector <string> mano;
+
+    public:
+    void puntos();
+};
