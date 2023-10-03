@@ -54,7 +54,12 @@ class Baraja{
             */
         }
 
-        void mezclar(vector<string>baraja_m);
+        void mezclar(vector<string>baraja_m){
+            random_device rd;
+            std::mt19937 rng(rd()); //Generador de numeros aleatorios del algoritmo Mersenne Twister
+
+            shuffle(baraja_madre.begin(), baraja_madre.end(), rng);
+        }
         void repartir(vector<string> baraja);
 
 };
