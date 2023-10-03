@@ -60,6 +60,15 @@ class Baraja{
 
             shuffle(baraja_madre.begin(), baraja_madre.end(), rng);
         }
-        void repartir(vector<string> baraja);
+        void repartir(vector<string>& mano, int cantidad){
+            if (cantidad > 0 && cantidad <= baraja_madre.size()) {
+                for (int i = 0; i < cantidad; i++) {
+                    mano.push_back(baraja_madre.back());
+                    baraja_madre.pop_back();
+                }
+            } else {
+                cout << "No se pueden repartir " << cantidad << " cartas." << endl;
+            }
+        }
 
 };
