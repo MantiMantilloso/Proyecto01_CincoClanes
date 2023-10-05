@@ -54,7 +54,7 @@ class Baraja{
             */
         }
 
-        void mezclar(vector<string>baraja_m){
+        void mezclar(){
             random_device rd;
             std::mt19937 rng(rd()); //Generador de numeros aleatorios del algoritmo Mersenne Twister
 
@@ -105,3 +105,40 @@ class Jugador{
     }
     
 };
+
+int main(){
+
+    Baraja miBaraja;
+    miBaraja.mezclar();
+
+    int cantidad_jugadores;
+    cout << "Ingrese la cantidad de jugadores: ";
+    cin >> cantidad_jugadores;
+
+    vector<Jugador> jugadores;
+
+    for (int i = 0; i < cantidad_jugadores; i++) {
+        string nombre;
+        cout << "Ingrese el nombre del Jugador " << i + 1 << ": ";
+        cin >> nombre;
+        Jugador jugador(nombre, i+1);
+        jugadores.push_back(jugador);
+    }
+
+    int cantidad_cartas_a_repartir = 3;
+
+    for (Jugador& jugador : jugadores) {
+        miBaraja.repartir(jugador.getMano(), cantidad_cartas_a_repartir);
+    }
+
+    // Mostrar las manos de los jugadores
+    for (Jugador& jugador : jugadores) {
+        cout << "Mano de " << jugador.getNombre() << ":" << endl;
+        for (const string& carta : jugador.getMano()) {
+            cout << carta << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
