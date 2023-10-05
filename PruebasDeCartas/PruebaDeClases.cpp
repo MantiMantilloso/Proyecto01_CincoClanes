@@ -81,6 +81,11 @@ class Jugador{
     vector <string> mano;
 
     public:
+
+    Jugador(const string& nom, int num){
+        nombre = nom ;
+        numero = num;
+    }
     void puntos();
     void setNumero(int num_jug){
         this->numero = num_jug;
