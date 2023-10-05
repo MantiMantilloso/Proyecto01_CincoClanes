@@ -82,4 +82,21 @@ class Jugador{
 
     public:
     void puntos();
+    void setNumero(int num_jug){
+        this->numero = num_jug;
+    }
+    void setNombre(string nom_jug){
+        this->nombre = nom_jug;
+    }
+
+    int getNumero(){
+        return this->numero;
+    }
+    string getNombre (){
+        return this->nombre;
+    }
+    vector <string>& getMano(){
+        return this->mano;
+    }
+    
 };
