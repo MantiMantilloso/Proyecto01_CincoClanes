@@ -54,7 +54,7 @@ bool Ganador(vector<Jugador>& jugadores, Baraja& baraja){
 }
 void jugar(){
 	string titulo = " Bienvenido a 5 Clanes";
-    int ancho = 50;  // Ancho total del encabezado
+    int ancho = 70;  // Ancho total del encabezado
     
     // Configuraci�n para dar formato al encabezado
     cout << string(ancho, '*') << endl;
