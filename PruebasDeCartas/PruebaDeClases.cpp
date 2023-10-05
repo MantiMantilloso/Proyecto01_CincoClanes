@@ -34,6 +34,7 @@ public:
 class Baraja{
     private:
         vector <string> baraja_madre;
+        int cartas_repartidas;
     
     public:
 
@@ -48,11 +49,15 @@ class Baraja{
                 "7o", "7*", "7~", "7+", "7!",
                 "8o", "8*", "8~", "8+", "8!"
             }; 
+            int cartas_repartidas = 0;
             /*
             clanes {"o","*","~","+","!"}; o:LUNA ; *:SOL ; ~:AGUA ; +:CRUZ; !:ESPADA
             guerreros {"1","2","3","4","5","6","7","8"};
             */
         }
+        int cartasDisponibles() {
+        return baraja_madre.size() - cartas_repartidas;
+    }
 
         void mezclar(){
             random_device rd;
@@ -65,6 +70,7 @@ class Baraja{
                 for (int i = 0; i < cantidad; i++) {
                     mano.push_back(baraja_madre.back());
                     baraja_madre.pop_back();
+                    cartas_repartidas++;
                 }
             } else {
                 cout << "No se pueden repartir " << cantidad << " cartas." << endl;
@@ -200,6 +206,41 @@ class Jugador{
     
 };
 
+bool encontrarGanadorORepartirCarta(vector<Jugador>& jugadores, Baraja& baraja) {
+    int puntajeMaximo = -1;
+    vector<Jugador> ganadores;
+
+    for (Jugador& jugador : jugadores) {
+        int puntaje = jugador.puntaje();
+
+        if (puntaje > puntajeMaximo) {
+            puntajeMaximo = puntaje;
+            ganadores.clear();
+            ganadores.push_back(jugador);
+        } else if (puntaje == puntajeMaximo) {
+            ganadores.push_back(jugador);
+        }
+    }
+
+    if (!ganadores.empty() and ganadores.size() <2 ) {
+        cout << "Ganador(es):" << endl;
+        for (Jugador& ganador : ganadores) {
+            cout << ganador.getNombre() << endl;
+        }
+        return true; // Se encontró un ganador
+    } else if (baraja.cartasDisponibles() == 0) {
+        cout << "No se pueden repartir más cartas. El juego ha terminado en empate." << endl;
+        return true; // No se pueden repartir más cartas, el juego termina en empate
+    } else {
+        // Repartir una carta a todos los jugadores
+        for (Jugador& jugador : jugadores) {
+            baraja.repartir(jugador.getMano(), 1);
+        }
+        return false; // El juego continúa
+    }
+}
+
+
 int main(){
 
     Baraja miBaraja;
@@ -221,18 +262,25 @@ int main(){
 
     int cantidad_cartas_a_repartir = 3;
 
-    for (Jugador& jugador : jugadores) {
-        miBaraja.repartir(jugador.getMano(), cantidad_cartas_a_repartir);
-    }
+    bool juegoTerminado = false;
 
-    // Mostrar las manos de los jugadores
-    for (Jugador& jugador : jugadores) {
-        cout << "Mano de " << jugador.getNombre() << ":" << endl;
-        for (const string& carta : jugador.getMano()) {
-            cout << carta << " ";
+    while (!juegoTerminado) {
+        for (Jugador& jugador : jugadores) {
+            miBaraja.repartir(jugador.getMano(), cantidad_cartas_a_repartir);
         }
-        cout << endl;
-        cout<<"Puntaje: "<<jugador.puntaje()<<endl;
+
+        // Mostrar las manos de los jugadores
+        for (Jugador& jugador : jugadores) {
+            cout << "Mano de " << jugador.getNombre() << ":" << endl;
+            for (const string& carta : jugador.getMano()) {
+                cout << carta << " ";
+            }
+            cout << endl;
+            cout<<"Puntaje: "<<jugador.puntaje()<<endl;
+        }
+        
+
+        juegoTerminado = encontrarGanadorORepartirCarta(jugadores, miBaraja);
     }
 
     return 0;
